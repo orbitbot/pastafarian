@@ -1,0 +1,29 @@
+{
+  "name": "thingamabob",
+  "version": "0.0.1",
+  "description": "A tiny event emitter-based finite state machine",
+  "private": true,
+  "main": "lib/thingamabob.js",
+  "scripts": {
+    "test": "electron-mocha --reporter spec ./test",
+    "browser-test": "electron-mocha --renderer --reporter spec ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orbitbot/thingamabob.git"
+  },
+  "keywords": [
+    "statemachine",
+    "fsm"
+  ],
+  "author": "Patrik Johnson <patrik@zebros.fi>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orbitbot/thingamabob/issues"
+  },
+  "homepage": "https://github.com/orbitbot/thingamabob#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "electron-mocha": "^0.8.0"
+  }
+}

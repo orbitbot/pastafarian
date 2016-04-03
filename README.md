@@ -1,2 +1,2 @@
 # thingamabob
-A tiny event-based finite state machine
+> A tiny event emitter-based finite state machine
