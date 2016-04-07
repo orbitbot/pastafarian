@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "A tiny event emitter-based finite state machine",
   "private": true,
-  "main": "lib/thingamabob.js",
+  "main": "thingamabob.js",
   "scripts": {
-    "test": "electron-mocha --reporter spec ./test",
+    "test": "",
+    "minify": "",
+    "node-test": "electron-mocha --reporter spec ./test",
     "browser-test": "electron-mocha --renderer --reporter spec ./test"
   },
   "repository": {
@@ -23,7 +25,7 @@
   },
   "homepage": "https://github.com/orbitbot/thingamabob#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "electron-mocha": "^0.8.0"
+    "chai": "3.5.0",
+    "electron-mocha": "1.0.2"
   }
 }
