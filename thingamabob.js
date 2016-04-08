@@ -1,7 +1,5 @@
 ;(function (root) {
-  var slice = Array.prototype.slice;
-
-  var FSM = function(config) {
+  function FSM(config) {
     var events = {};
     var fsm = {
       transitions : config.states,
@@ -17,11 +15,11 @@
         events[evt].splice(events[evt].indexOf(fn), 1);
       return fsm;
     };
-    var emit = function trigger(evt) {
+    var emit = function trigger(evt, args) {
       if (evt in events) {
         for (var i = 0; i < events[evt].length; ++i) {
           try {
-            events[evt][i].apply(this, slice.call(arguments, 1));
+            events[evt][i].apply(this, args);
           } catch (e) {
             if (evt !== 'error' && 'error' in events)
               trigger('error', e);
@@ -34,13 +32,13 @@
 
     fsm.go = function(next) {
       if (fsm.transitions[fsm.current].indexOf(next) > 0) {
-        var params = slice(arguments, 1);
+        var params = Array.prototype.slice(arguments, 1);
         var prev = fsm.current;
 
-        emit.apply(this, ['after:' + prev, next].concat(params));
-        emit.apply(this, ['before:' + next, prev].concat(params));
+        emit('after:' + prev, [next].concat(params));
+        emit('before:' + next, [prev].concat(params));
         fsm.current = next;
-        emit.apply(this, [next, prev].concat(params));
+        emit(next, [prev].concat(params));
       } else {
         emit('error', { message: '', name: 'IllegalTransition' });
       }
