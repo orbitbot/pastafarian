@@ -32,16 +32,19 @@
     };
 
     fsm.go = function(next) {
-      if (fsm.transitions[fsm.current].indexOf(next) > 0) {
-        var params = Array.prototype.slice(arguments, 1);
-        var prev = fsm.current;
+      var prev = fsm.current;
+      if (fsm.transitions[prev].indexOf(next) >= 0) {
+        var params = Array.prototype.slice.call(arguments, 1);
 
         emit('after:' + prev, [next].concat(params));
         emit('before:' + next, [prev].concat(params));
         fsm.current = next;
         emit(next, [prev].concat(params));
       } else {
-        emit('error', { message: '', name: 'IllegalTransition' });
+        emit('error', {
+          name    : 'IllegalTransition',
+          message : 'Transition from ' + prev + ' to ' + next + ' is not allowed'
+        });
       }
     };
 
