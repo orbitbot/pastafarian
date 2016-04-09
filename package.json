@@ -6,9 +6,10 @@
   "main": "thingamabob.js",
   "scripts": {
     "test": "",
+    "develop": "onchange 'thingamabob.js' 'test/*' -- npm run test:node",
     "minify": "",
-    "node-test": "electron-mocha --reporter spec ./test",
-    "browser-test": "electron-mocha --renderer --reporter spec ./test"
+    "test:node": "electron-mocha --reporter spec ./test",
+    "test:browser": "electron-mocha --renderer --reporter spec ./test"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,8 @@
   },
   "keywords": [
     "statemachine",
-    "fsm"
+    "fsm",
+    "state"
   ],
   "author": "Patrik Johnson <patrik@zebros.fi>",
   "license": "ISC",
@@ -26,6 +28,8 @@
   "homepage": "https://github.com/orbitbot/thingamabob#readme",
   "devDependencies": {
     "chai": "3.5.0",
-    "electron-mocha": "1.0.2"
+    "electron-mocha": "1.0.2",
+    "onchange": "2.2.0",
+    "sinon": "1.17.3"
   }
 }

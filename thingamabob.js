@@ -15,6 +15,7 @@
         events[evt].splice(events[evt].indexOf(fn), 1);
       return fsm;
     };
+    fsm.on = fsm.bind;
     var emit = function trigger(evt, args) {
       if (evt in events) {
         for (var i = 0; i < events[evt].length; ++i) {
@@ -43,7 +44,6 @@
         emit('error', { message: '', name: 'IllegalTransition' });
       }
     };
-    fsm.on = fsm.bind;
 
     return fsm;
   }
@@ -55,6 +55,6 @@
   } else if (typeof self !== 'undefined') {
     self.StateMachine = StateMachine;
   } else {
-    root.Bob = FSM;
+    root.StateMachine = FSM;
   }
 }(this));

@@ -1,19 +1,18 @@
-var Bob = require('./../thingamabob.js');
+var FSM = require('./../thingamabob.js');
 var chai = require('chai');
 var assert = chai.assert;
 var should = chai.should();
-
 
 describe('FSM API', function() {
 
   var fsm;
 
   beforeEach(function() {
-    fsm = new Bob({
+    fsm = new FSM({
       initial : 'green',
       states  : {
-        green : 'red',
-        red   : 'green',
+        green : ['red'],
+        red   : ['green'],
       }
     });
   });
