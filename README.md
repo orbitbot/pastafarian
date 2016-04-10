@@ -1,6 +1,7 @@
 # thingamabob
 > A tiny event emitter-based finite state machine
 
+### Under development, but usable
 
 
 - configure when initializing only (demo helpers to add/remove states?)
