@@ -12,3 +12,8 @@
 
 - https://github.com/jakesgordon/javascript-state-machine
 - https://github.com/ifandelse/machina.js
+
+
+// transition function returns a promise? / proomise API ?
+// transition function supports result callback?
+// a transtition that throws an error can be canceled?

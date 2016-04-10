@@ -1,8 +1,6 @@
 var FSM = require('./../thingamabob.js');
 var chai = require('chai');
 var sinon = require('sinon');
-var assert = chai.assert;
-var expect = chai.expect;
 var should = chai.should();
 
 describe('FSM event emitter', function() {
@@ -72,7 +70,7 @@ describe('FSM event emitter', function() {
     fsm.go('red');
 
     for (var i = 0; i < called; ++i) {
-      expect(called[i]).to.equal(true);
+      called[i].should.equal(true);
     }
   });
 
@@ -85,8 +83,8 @@ describe('FSM event emitter', function() {
         var prev = called[index - 1];
         var next = called[index + 1];
 
-        if (prev) expect(prev).to.equal(true);
-        if (next) expect(nexct).to.equal(false);
+        if (prev) prev.should.equal(true);
+        if (next) next.should.equal(false);
       }
     }
 
@@ -101,8 +99,8 @@ describe('FSM event emitter', function() {
       return Math.random();
     });
 
-    fsm.on('red', function() {
-      arguments[0].should.equal('green');
+    fsm.on('red', function(prev, fst) {
+      prev.should.equal('green');
       arguments.length.should.equal(params.length + 1);
       for (i = 0; i < params.length; ++i) {
         params[i].should.equal(arguments[i + 1]);

@@ -1,4 +1,10 @@
 ;(function (root) {
+  function ITE(prev, next) {
+    var error = Error.call(this, 'Transition from ' + prev + ' to ' + next + ' is not allowed');
+    error.name = 'IllegalTransitionException';
+    return error;
+  }
+
   function FSM(config) {
     var events = {};
     var fsm = {
@@ -23,11 +29,14 @@
             events[evt][i].apply(this, args);
           } catch (e) {
             if (evt !== 'error' && 'error' in events)
-              trigger('error', e);
-            else
-              setTimeout(function() { throw e; });
+              trigger('error', [e]);
+            else {
+              throw e;
+            }
           }
         }
+      } else if (evt === 'error') {
+        throw args[0];
       }
     };
 
@@ -41,10 +50,7 @@
         fsm.current = next;
         emit(next, [prev].concat(params));
       } else {
-        emit('error', {
-          name    : 'IllegalTransition',
-          message : 'Transition from ' + prev + ' to ' + next + ' is not allowed'
-        });
+        emit('error', [new ITE(prev, next), prev, next]);
       }
     };
 
