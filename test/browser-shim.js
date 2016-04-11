@@ -1,0 +1,1 @@
+module.exports = false; // ensure that loaded module is browser-compatible in electron renderer process

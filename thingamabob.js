@@ -62,7 +62,7 @@
   } else if (typeof module === 'object' && module.exports) {
     module.exports = FSM;
   } else if (typeof self !== 'undefined') {
-    self.StateMachine = StateMachine;
+    self.StateMachine = FSM;
   } else {
     root.StateMachine = FSM;
   }

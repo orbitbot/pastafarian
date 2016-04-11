@@ -1,4 +1,5 @@
-var FSM = require('./../thingamabob.js');
+if (typeof window === 'undefined')
+  StateMachine = require('./../thingamabob.js');
 var chai = require('chai');
 var assert = chai.assert;
 var should = chai.should();
@@ -8,7 +9,7 @@ describe('FSM transitions', function() {
   var fsm;
 
   beforeEach(function() {
-    fsm = new FSM({
+    fsm = new StateMachine({
       initial : 'green',
       states  : {
         green : ['red'],
