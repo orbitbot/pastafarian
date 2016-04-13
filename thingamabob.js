@@ -49,6 +49,7 @@
         emit('before:' + next, [prev].concat(params));
         fsm.current = next;
         emit(next, [prev].concat(params));
+        emit('all', [prev, next].concat(params));
       } else {
         emit('error', [new ITE(prev, next), prev, next]);
       }

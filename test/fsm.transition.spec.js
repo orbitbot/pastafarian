@@ -1,10 +1,14 @@
 if (typeof window === 'undefined')
   StateMachine = require('./../thingamabob.js');
 var chai = require('chai');
-var assert = chai.assert;
+var sinon = require('sinon');
 var should = chai.should();
 
 describe('FSM transitions', function() {
+
+  function random(upper) {
+    return Math.floor(Math.random() * upper) + 1;
+  }
 
   var fsm;
 
@@ -43,6 +47,19 @@ describe('FSM transitions', function() {
       done();
     });
     fsm.go('red');
+  });
+
+  it('emits an "all" event containing both the previous and newly entered states', function(done) {
+    var parameter = new Date();
+    fsm.on('all', function(prev, entered, param) {
+      prev.should.equal('green');
+      entered.should.equal('red');
+      fsm.current.should.equal('red');
+      param.should.equal(parameter);
+      done();
+    });
+
+    fsm.go('red', parameter);
   });
 
   it('changes the state after the "after:" and "before:" events but before the main event', function(done) {
@@ -99,5 +116,17 @@ describe('FSM transitions', function() {
     } catch (e) {
       e.message.should.equal('intentional');
     }
+  });
+
+  it('fires the "all" event on every transition', function() {
+    var spy = sinon.spy();
+    var rnd = random(15);
+
+    fsm.on('all', spy);
+    for (var i = 0; i < rnd; ++i) {
+      fsm.go( i % 2 ? 'green' : 'red' );
+    }
+
+    spy.callCount.should.equal(rnd);
   });
 });

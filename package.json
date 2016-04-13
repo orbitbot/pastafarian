@@ -1,6 +1,6 @@
 {
   "name": "thingamabob",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A tiny event emitter-based finite state machine",
   "main": "thingamabob.js",
   "scripts": {
