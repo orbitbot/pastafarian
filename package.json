@@ -1,21 +1,21 @@
 {
-  "name": "thingamabob",
-  "version": "0.9.1",
+  "name": "pastafarian",
+  "version": "0.9.2",
   "description": "A tiny event emitter-based finite state machine",
-  "main": "thingamabob.js",
+  "main": "pastafarian.js",
   "scripts": {
     "test": "",
-    "develop": "onchange 'thingamabob.js' 'test/*' -- npm run test:node",
+    "develop": "onchange 'pastafarian.js' 'test/*' -- npm run test:node",
     "minify": "",
     "test:node": "electron-mocha --reporter spec ./test",
-    "test:browser": "electron-mocha --renderer --preload test/browser-shim.js --preload thingamabob.js --reporter spec ./test"
+    "test:browser": "electron-mocha --renderer --preload test/browser-shim.js --preload pastafarian.js --reporter spec ./test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/orbitbot/thingamabob.git"
+    "url": "git+https://github.com/orbitbot/pastafarian.git"
   },
   "files": [
-    "thingamabob.js"
+    "pastafarian.js"
   ],
   "keywords": [
     "statemachine",
@@ -25,9 +25,9 @@
   "author": "Patrik Johnson <patrik@zebros.fi>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/orbitbot/thingamabob/issues"
+    "url": "https://github.com/orbitbot/pastafarian/issues"
   },
-  "homepage": "https://github.com/orbitbot/thingamabob#readme",
+  "homepage": "https://github.com/orbitbot/pastafarian#readme",
   "devDependencies": {
     "chai": "3.5.0",
     "electron-mocha": "1.1.0",

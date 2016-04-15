@@ -1,5 +1,5 @@
 if (typeof window === 'undefined')
-  StateMachine = require('./../thingamabob.js');
+  StateMachine = require('./../pastafarian.js');
 var chai = require('chai');
 var sinon = require('sinon');
 var should = chai.should();
