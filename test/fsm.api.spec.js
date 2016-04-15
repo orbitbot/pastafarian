@@ -14,13 +14,15 @@ describe('FSM API', function() {
       states  : {
         green : ['red'],
         red   : ['green'],
-      }
+      },
+      error   : console.error.bind(console, 'Error: ')
     });
   });
 
   it('has state machine fields', function() {
     assert.isObject(fsm.transitions, 'has transitions object');
     assert.isString(fsm.current, 'current state is defined');
+    assert.isFunction(fsm.error, 'error hanlder is defined');
   });
 
   it('has methods for registering and unregistering events', function() {

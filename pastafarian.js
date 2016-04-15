@@ -10,6 +10,7 @@
     var fsm = {
       transitions : config.states,
       current     : config.initial,
+      error       : config.error,
     };
     fsm.bind = function(evt, fn) {
       events[evt] = events[evt] || [];
@@ -22,36 +23,38 @@
       return fsm;
     };
     fsm.on = fsm.bind;
+
+    function onError(args) {
+      if (typeof fsm.error === 'function')
+        fsm.error.apply(this, args);
+      else
+        throw args[0];
+    }
+
     var emit = function trigger(evt, args) {
       if (evt in events) {
         for (var i = 0; i < events[evt].length; ++i) {
           try {
             events[evt][i].apply(this, args);
           } catch (e) {
-            if (evt !== 'error' && 'error' in events)
-              trigger('error', [e]);
-            else {
-              throw e;
-            }
+            onError([e]);
           }
         }
-      } else if (evt === 'error') {
-        throw args[0];
       }
     };
 
     fsm.go = function(next) {
       var prev = fsm.current;
-      if (fsm.transitions[prev].indexOf(next) >= 0) {
-        var params = Array.prototype.slice.call(arguments, 1);
+      var params = Array.prototype.slice.call(arguments, 1);
 
+      if (fsm.transitions[prev].indexOf(next) > -1) {
         emit('after:' + prev, [next].concat(params));
         emit('before:' + next, [prev].concat(params));
         fsm.current = next;
         emit(next, [prev].concat(params));
         emit('all', [prev, next].concat(params));
       } else {
-        emit('error', [new ITE(prev, next), prev, next]);
+        onError([new ITE(prev, next), prev, next].concat(params));
       }
     };
 

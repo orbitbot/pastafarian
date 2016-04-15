@@ -22,7 +22,8 @@ describe('FSM event emitter', function() {
       states  : {
         green : ['red'],
         red   : ['green', 'red'],
-      }
+      },
+      error   : console.error.bind(console, 'Error: ')
     });
   });
 
