@@ -1,6 +1,8 @@
 # pastafarian
 > A tiny event emitter-based finite state machine
 
+[![Build Status](https://travis-ci.org/orbitbot/pastafarian.svg?branch=master)](https://travis-ci.org/orbitbot/pastafarian)
+
 ### Under development, but usable
 
 - configure when initializing only (demo helpers to add/remove states?)

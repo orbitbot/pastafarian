@@ -20,7 +20,8 @@
   "keywords": [
     "statemachine",
     "fsm",
-    "state"
+    "state",
+    "event"
   ],
   "author": "Patrik Johnson <patrik@zebros.fi>",
   "license": "ISC",
