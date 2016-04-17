@@ -6,7 +6,7 @@
 ### Under development, but usable
 
 - configure when initializing only (demo helpers to add/remove states?)
-- state transition semantics vs "event" semantics (no methods/mixin)
+- state transition semantics vs "event" semantics (no methods/mixin), name your states, not your transitions
 ...
 
 #### Installation
@@ -23,7 +23,8 @@ $ npm install pastafarian
 <br>
 #### Extending
 
-- helper for next method
+- helper for "can/cannot"
+- helper for "is"
 - helper for 'once' callback
 
 <br>

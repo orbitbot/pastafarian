@@ -49,9 +49,9 @@ describe('FSM transitions', function() {
     fsm.go('red');
   });
 
-  it('emits an "all" event containing both the previous and newly entered states', function(done) {
+  it('emits an "*" wildcard event containing both the previous and newly entered states', function(done) {
     var parameter = new Date();
-    fsm.on('all', function(prev, entered, param) {
+    fsm.on('*', function(prev, entered, param) {
       prev.should.equal('green');
       entered.should.equal('red');
       fsm.current.should.equal('red');
@@ -122,7 +122,7 @@ describe('FSM transitions', function() {
     var spy = sinon.spy();
     var rnd = random(15);
 
-    fsm.on('all', spy);
+    fsm.on('*', spy);
     for (var i = 0; i < rnd; ++i) {
       fsm.go( i % 2 ? 'green' : 'red' );
     }

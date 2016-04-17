@@ -52,7 +52,7 @@
         emit('before:' + next, [prev].concat(params));
         fsm.current = next;
         emit(next, [prev].concat(params));
-        emit('all', [prev, next].concat(params));
+        emit('*', [prev, next].concat(params));
       } else {
         onError([new ITE(prev, next), prev, next].concat(params));
       }
