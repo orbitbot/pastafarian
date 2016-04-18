@@ -1,14 +1,14 @@
 {
   "name": "pastafarian",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "A tiny event emitter-based finite state machine",
   "main": "pastafarian.js",
   "scripts": {
-    "test": "",
     "develop": "onchange 'pastafarian.js' 'test/*' -- npm run test:node",
-    "minify": "",
+    "minify": "uglifyjs pastafarian.js -o pastafarian.min.js -c --m",
     "test:node": "electron-mocha --reporter spec ./test",
-    "test:browser": "electron-mocha --renderer --preload test/browser-shim.js --preload pastafarian.js --reporter spec ./test"
+    "test:browser": "electron-mocha --renderer --preload test/browser-shim.js --preload pastafarian.js --reporter spec ./test",
+    "test:minified": "electron-mocha --renderer --preload test/browser-shim.js --preload pastafarian.min.js --reporter spec ./test"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "chai": "3.5.0",
     "electron-mocha": "1.1.0",
     "onchange": "2.2.0",
-    "sinon": "1.17.3"
+    "sinon": "1.17.3",
+    "uglify-js": "2.6.2"
   }
 }

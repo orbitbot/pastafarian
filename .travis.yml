@@ -12,5 +12,4 @@ script:
   - npm run test:browser
 
 after_script:
-  - echo "Current size:"
   - cat pastafarian.js | wc -c
