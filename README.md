@@ -8,7 +8,7 @@
 
 Grab a lightweight event emitter implementation, add some logic to track states and Voilà! A tiny finite state machine implementation at around 500 bytes minfied and gzipped. `pastafarian` is implemented as a UMD module, so it should run in most javascript setups.
 
-*Todo: Add pic*
+![spaceballs-survive](https://cloud.githubusercontent.com/assets/2631164/14754610/28b3e7b6-08e5-11e6-83a5-da0bd6ced8b9.jpg)
 
 ###### Features
 - probably the smallest FSM on the block in javascript-land
@@ -95,7 +95,7 @@ var trafficLight = new StateMachine({
 ```
 ... which will create a state machine like this diagram:
 
-*Todo: Add pic*
+![ryg-state-sm](https://cloud.githubusercontent.com/assets/2631164/14754614/2daa6754-08e5-11e6-9922-1c63b3c7813f.png)
 
 <br>
 ##### State machine API
