@@ -182,7 +182,7 @@ Also note that
 - any number of callbacks can be registered for any `event`
 - callbacks will be triggered in the order registered
 - `fsm.on` and `fsm.bind` will accept any valid object key as the first parameter and will perform no checks to ensure a matching state is defined, so watch out for typos
-- *Todo: verify what happens if a callback throws an exception, does it matter if `fsm.error` is defined*
+- `fsm.error` significantly affects how `pastafarian` works in the case of thrown exceptions in callbacks, see [Differences in functionality if `fsm.error` is defined or not](README.md#)
 
 So, given a basic state machine:
 
@@ -234,6 +234,13 @@ function errorHandler(error, prev, next /* ...params */) {
 ```
 
 If the error handler function is not defined, any calls to `fsm.go` may throw errors or exceptions for the above reasons and can be caught similarly using try/catch blocks.
+
+###### Differences in functionality if `fsm.error` is defined or not
+
+The existance of `fsm.error` has a significant impact on functionality:
+
+- if `fsm.error` is not defined, an uncaught exception in a callback will stop execution and subsequent callbacks will not be triggered, potentially leaving your application in an undefined state if you are relying on the side-effects of a certain callback being applied. `fsm.current` may also still be in the previous state, depending on which events the callbacks were registered to
+- if `fsm.error` is defined, an uncaught exception in a callback will trigger the error handler and stop further execution of the code inside that callback, but all other callbacks will be triggered and the state transition will be completed, which may also cause cause problems with unfinished side-effects
 
 ###### IllegalTransitionException
 
