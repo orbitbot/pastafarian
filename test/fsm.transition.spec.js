@@ -76,48 +76,6 @@ describe('FSM transitions', function() {
     fsm.go('red');
   });
 
-  it('calls the provided error handler if a transition is not allowd from the current state', function(done) {
-    fsm.error = function(error, prev, attempted) {
-      error.name.should.equal('IllegalTransitionException');
-      error.message.should.not.equal(undefined);
-      prev.should.equal('green');
-      attempted.should.equal('green');
-      done();
-    };
-    fsm.go('green');
-  });
-
-  it('throws error if an illegal transition is attempted and there is no error handler', function() {
-    try {
-      fsm.go('green');
-    } catch(e) {
-      e.name.should.equal('IllegalTransitionException');
-      e.message.should.not.equal(undefined);
-    }
-  });
-
-  it('calls the provided error handler if an uncaught exception is thrown in a transition', function(done) {
-    fsm.error = function(error) {
-      error.message.should.equal('intentional');
-      done();
-    };
-    fsm.on('red', function() {
-      throw new Error('intentional');
-    });
-    fsm.go('red');
-  });
-
-  it('re-thows exceptions if an uncaught exception is thrown in a transition and there is no error handler', function() {
-    fsm.on('red', function() {
-      throw new Error('intentional');
-    });
-    try {
-      fsm.go('red');
-    } catch (e) {
-      e.message.should.equal('intentional');
-    }
-  });
-
   it('fires the "all" event on every transition', function() {
     var spy = sinon.spy();
     var rnd = random(15);
