@@ -17,6 +17,7 @@ Grab a lightweight event emitter implementation, add some logic to track states 
 - synchronous state transitions only (async transitions are actually waiting states...)
 
 <br>
+
 ### Example
 
 ```js
@@ -67,6 +68,7 @@ $ npm install pastafarian
 If you're using `pastafarian` in a browser environment, the constructor is attached to the `StateMachine` global.
 
 <br>
+
 ### Usage
 
 The `StateMachine` global or the `pastafarian` module is a constructor for a finite-state machine. The constructor expects a single configuration object:
@@ -97,6 +99,7 @@ var trafficLight = new StateMachine({
 ![ryg-state-sm](https://cloud.githubusercontent.com/assets/2631164/14754614/2daa6754-08e5-11e6-9922-1c63b3c7813f.png)
 
 <br>
+
 ##### State machine API
 
 A state machine `var fsm = new StateMachine(config)` will have
@@ -123,6 +126,7 @@ Transitions the state machine to `state` and causes any registered callbacks for
 All methods as well as the constructor return the state machine itself, and are therefore chainable.
 
 <br>
+
 ###### Fields:
 
 **`fsm.transitions` : `object`**
@@ -142,6 +146,7 @@ If you need to change the functionality or state without going through transitio
 
 
 <br>
+
 ##### Event callback API
 
 Callbacks triggered on state transitions can be registered with `fsm.on` or `fsm.bind`:
@@ -204,6 +209,7 @@ state.on('after:end',    function() { });
 
 
 <br>
+
 ##### Error handling
 
 If defined, the `fsm.error` function will be called in two separate cases:
@@ -239,9 +245,8 @@ If the error handler function is not defined, any calls to `fsm.go` may throw er
 The exception is generated inside the library, but in modern environments it should contain a stacktrace that allows you to track which line caused the exception.
 
 <br>
-### Extending
 
-**WARNING: untested implementations**
+### Extending
 
 `pastafarian` omits most safety checks and a larger API in favor of size, but can be extended in different ways to support different usage patterns and semantics.
 
@@ -264,7 +269,7 @@ fsm.is = function(state) {
 };
 
 // return a list of the valid states to enter from the current state
-fsm.transitions = function() {
+fsm.allowed = function() {
   return fsm.transitions[fsm.current];
 };
 ```
@@ -273,9 +278,9 @@ A "fire once" callback can be implemented with
 
 ```js
 fsm.once = function(evt, fn) {
-  fsm.on(evt, function() {
+  fsm.on(evt, function onceCb() {
     fn.apply(fn, Array.prototype.slice.call(arguments));
-    fsm.unbind(evt, this);
+    fsm.unbind(evt, onceCb);
   });
   return fsm;
 };
@@ -295,9 +300,9 @@ fsm.remove = function(obsolete) {
   delete fsm.transitions[obsolete];
 
   for (var state in fsm.transitions) {
-    if (object.hasOwnProperty(state)) {
+    if (fsm.transitions.hasOwnProperty(state)) {
       var index = fsm.transitions[state].indexOf(obsolete);
-      if (obsolete > -1)
+      if (index > -1)
         fsm.transitions[state].splice(index, 1);
     }
   }
@@ -305,19 +310,20 @@ fsm.remove = function(obsolete) {
 };
 ```
 
+Transitions between states can be removed in a similar fashion.
+
 If you wish to apply some common sanity checks before state transitions, one way to add these would be by patching the `.go` method:
 
 ```js
 fsm.origo = fsm.go;
 fsm.go = function() {
-
-  // state validation, parameter checks, anything you might need
-
+  // put state validation, parameter checks, anything you might need here
   return fsm.origo.apply(this, Array.prototype.slice.call(arguments));
 };
-
 ```
+
 <br>
+
 ### Alternatives
 
 Too basic? Not quite what you were looking for? Some other alternatives for state machines in javascript are
@@ -328,16 +334,19 @@ Too basic? Not quite what you were looking for? Some other alternatives for stat
 Searching on bower or npm will probably also find some other takes on the subject.
 
 <br>
+
 ### Colophon
 
 The event emitter pattern that `pastafarian` uses at its core is based on [microevent.js](https://github.com/jeromeetienne/microevent.js).
 
 <br>
+
 ### License
 
 `pastafarian` is ISC licensed.
 
 <br>
+
 ### Development
 
 A basic development workflow is defined using npm run scripts. Get started with
@@ -351,6 +360,7 @@ $ npm run develop
 Bugfixes and improvements are welcome, however, please open an Issue to discuss any larger changes beforehand, and consider if functionality can be implemented with a simple monkey-patching extension script. Useful extensions are more than welcome!
 
 <br>
+
 ##### Possible future
 
 - promise support for transition function?
