@@ -39,7 +39,9 @@ describe('FSM API', function() {
   it('supports chaining registering event callbacks', function() {
     var fst = fsm.on('something', function() {});
     var snd = fsm.unbind('another', function() {});
+    var trd = fsm.go('red');
     fst.should.equal(fsm);
     snd.should.equal(fsm);
+    trd.should.equal(fsm);
   });
 });

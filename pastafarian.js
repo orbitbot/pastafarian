@@ -56,6 +56,7 @@
       } else {
         onError([new ITE(prev, next), prev, next].concat(params));
       }
+      return fsm;
     };
 
     return fsm;
