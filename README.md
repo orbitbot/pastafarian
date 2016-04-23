@@ -6,7 +6,7 @@
 ![minfied size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.min.js?color=yellow&label=minfied size)
 ![minfied+gzipped size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.min.js?label=gzipped.min&compression=gzip)
 
-Grab a lightweight event emitter implementation, add some logic to track states and Voilà! A tiny finite state machine implementation at around 500 bytes minfied and gzipped. `pastafarian` is implemented as a UMD module, so it should run in most javascript setups.
+Grab a lightweight event emitter implementation, add some logic to track states and Voilà! A tiny finite state machine implementation at little more than 500 bytes minfied and gzipped. `pastafarian` is implemented as a UMD module, so it should run in most javascript setups.
 
 ![spaceballs-survive](https://cloud.githubusercontent.com/assets/2631164/14754610/28b3e7b6-08e5-11e6-83a5-da0bd6ced8b9.jpg)
 
@@ -34,7 +34,7 @@ state.on('*', function(prev, next) {
 
 state
   .on('before:start', function(prev, param) {
-    console.log('Reset with ' + param); // param === 'foo'
+    console.log('Reset with param === "foo": ' + param === 'foo');
   })
   .on('after:start', function(next) {
     console.log('Going to ' + next);
@@ -53,11 +53,10 @@ state.reset('foo');
 
 ### Installation
 
-Download
+Right click to save or use the URLs in your script tags
 
-*Todo: fix links*
-- [`pastafarian.js`]()
-- [`pastafarian.min.js`]()
+- [`pastafarian.js`](https://cdn.rawgit.com/orbitbot/pastafarian/master/pastafarian.js)
+- [`pastafarian.min.js`](https://cdn.rawgit.com/orbitbot/pastafarian/master/pastafarian.min.js)
 
 or use
 
@@ -107,7 +106,7 @@ A state machine `var fsm = new StateMachine(config)` will have
 
 **`fsm.bind(eventName, callback) ⇒ fsm`**
 
-Attaches `callback` to be called whenever `eventName` is triggered by a state transition. See the Event callback API for all possible events for a single transition.
+Attaches `callback` to be called whenever `eventName` is triggered by a state transition. See the [Event callback API](README.md#event-callback-api) for all possible events for a single transition.
 
 **`fsm.unbind(eventName, callback) ⇒ fsm`**
 
@@ -119,7 +118,7 @@ Synonym for `fsm.bind`.
 
 **`fsm.go(state /* ...args */) ⇒ fsm`**
 
-Transitions the state machine to `state` and causes any registered callbacks for this transition (including `before:`, `after:` and wildcard callbacks) to be triggered. All parameters after `state` are passed on to each callback along with the states involved in the transition, see the Event callback API for the exact signatures.
+Transitions the state machine to `state` and causes any registered callbacks for this transition (including `before:`, `after:` and wildcard callbacks) to be triggered. All parameters after `state` are passed on to each callback along with the states involved in the transition, see the [Event callback API](README.md#event-callback-api) for the exact signatures.
 
 All methods as well as the constructor return the state machine itself, and are therefore chainable.
 
@@ -132,12 +131,12 @@ An object where the keys are state names, and the values of each key is an array
 
 **`fsm.current` : `string`**
 
-Tracks the current state, the starting value is `config.initial`. The value changes during state transitions, see Event callback API.
+Tracks the current state, the starting value is `config.initial`. The value changes during state transitions, see [Event callback API](README.md#event-callback-api).
 
 
 **`fsm.error` : `function`**
 
-The if defined, the function from `config.error`, see Error handling.
+The if defined, the function from `config.error`, see [Error handling](README.md#error-handling).
 
 If you need to change the functionality or state without going through transitions, these fields can be edited as required. See the section on extending below for some ideas.
 
@@ -242,11 +241,11 @@ The exception is generated inside the library, but in modern environments it sho
 <br>
 ### Extending
 
-** WARNING: untested implementations **
+**WARNING: untested implementations**
 
 `pastafarian` omits most safety checks and a larger API in favor of size, but can be extended in different ways to support different usage patterns and semantics.
 
-If you find yourself often needing to check the current state or valid transitions, some of these helpers might provide a nicer interface:
+If you find yourself often needing to check the current state or valid transitions, these helpers might provide a nicer interface:
 
 ```js
 // is parameter state a valid transition from the current state?
@@ -270,7 +269,7 @@ fsm.transitions = function() {
 };
 ```
 
-A "fire once" callback can be implemented like so:
+A "fire once" callback can be implemented with
 
 ```js
 fsm.once = function(evt, fn) {
