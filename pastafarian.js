@@ -18,7 +18,7 @@
       return fsm;
     };
     fsm.unbind = function(evt, fn) {
-      if (evt in events)
+      if (evt in events && events[evt].indexOf(fn) > -1)
         events[evt].splice(events[evt].indexOf(fn), 1);
       return fsm;
     };

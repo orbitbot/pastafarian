@@ -47,6 +47,16 @@ describe('FSM event emitter', function() {
     spy.callCount.should.equal(1);
   });
 
+  it('does not remove unrelated callbacks if unbind is called with a method not registered', function() {
+    var spy = sinon.spy();
+
+    fsm.on('red', spy);
+    fsm.unbind('red', function() {});
+    fsm.go('red');
+
+    spy.callCount.should.equal(1);
+  });
+
   it('fires only callbacks matching the event', function() {
     var fst = sinon.spy();
     var snd = sinon.spy();
