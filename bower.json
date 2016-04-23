@@ -1,0 +1,24 @@
+{
+  "name": "pastafarian",
+  "description": "A tiny event emitter-based finite state machine",
+  "main": "pastafarian.js",
+  "authors": [
+    "Patrik Johnson <patrik@zebros.fi>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "statemachine",
+    "fsm",
+    "state",
+    "event"
+  ],
+  "homepage": "https://github.com/orbitbot/pastafarian",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test"
+  ]
+}

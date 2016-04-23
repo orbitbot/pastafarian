@@ -63,6 +63,7 @@ or use
 
 ```sh
 $ npm install pastafarian
+$ bower install pastafarian
 ```
 
 If you're using `pastafarian` in a browser environment, the constructor is attached to the `StateMachine` global.
