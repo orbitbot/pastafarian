@@ -17,7 +17,9 @@
     "globals"
   ],
   "ignore": [
-    "**/.*",
+    ".*",
+    "*.json",
+    "README.md",
     "node_modules",
     "test"
   ]

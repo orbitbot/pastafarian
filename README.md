@@ -89,7 +89,7 @@ var trafficLight = new StateMachine({
   initial : 'red',
   states  : {
     green  : ['yellow'],
-    yellow : ['green, red']
+    yellow : ['green', 'red'],
     red    : ['red'],
   },
   error : console.error.bind(console, 'Error: ')

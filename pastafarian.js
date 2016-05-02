@@ -31,7 +31,7 @@
         throw args[0];
     }
 
-    var emit = function trigger(evt, args) {
+    function emit(evt, args) {
       if (evt in events) {
         for (var i = 0; i < events[evt].length; ++i) {
           try {

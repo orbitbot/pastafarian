@@ -63,14 +63,19 @@ describe('FSM transitions', function() {
   });
 
   it('changes the state after the "after:" and "before:" events but before the main event', function(done) {
+    var spy = sinon.spy();
     fsm.on('after:green', function() {
+      spy();
       fsm.current.should.equal('green');
     });
     fsm.on('before:red', function() {
+      spy();
       fsm.current.should.equal('green');
     });
     fsm.on('red', function() {
+      spy();
       fsm.current.should.equal('red');
+      spy.callCount.should.equal(3);
       done();
     });
     fsm.go('red');
