@@ -1,6 +1,6 @@
 {
   "name": "pastafarian",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tiny event emitter-based finite state machine",
   "main": "pastafarian.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "url": "git+https://github.com/orbitbot/pastafarian.git"
   },
   "files": [
-    "pastafarian.js"
+    "pastafarian.js",
+    "pastafarian.min.js"
   ],
   "keywords": [
     "statemachine",
