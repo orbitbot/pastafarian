@@ -1,6 +1,6 @@
 {
   "name": "pastafarian",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A tiny event emitter-based finite state machine",
   "main": "pastafarian.js",
   "scripts": {
@@ -32,9 +32,9 @@
   "homepage": "https://github.com/orbitbot/pastafarian#readme",
   "devDependencies": {
     "chai": "3.5.0",
-    "electron-mocha": "1.1.0",
-    "onchange": "2.2.0",
-    "sinon": "1.17.3",
+    "electron-mocha": "2.1.0",
+    "onchange": "2.4.0",
+    "sinon": "1.17.4",
     "uglify-js": "2.6.2"
   }
 }

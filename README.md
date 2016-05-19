@@ -6,7 +6,7 @@
 ![minfied size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.min.js?color=yellow&label=minfied size)
 ![minfied+gzipped size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.min.js?label=gzipped.min&compression=gzip)
 
-Grab a lightweight event emitter implementation, add some logic to track states and Voilà! A tiny finite state machine implementation at little more than 500 bytes minfied and gzipped. `pastafarian` is implemented as a UMD module, so it should run in most javascript setups.
+Grab a lightweight event emitter implementation, add some logic to track states and Voilà! A tiny finite state machine implementation at little less than 550 bytes minfied and gzipped. `pastafarian` is implemented as a UMD module, so it should run in most javascript setups.
 
 ![spaceballs-survive](https://cloud.githubusercontent.com/assets/2631164/14754610/28b3e7b6-08e5-11e6-83a5-da0bd6ced8b9.jpg)
 
@@ -14,7 +14,8 @@ Grab a lightweight event emitter implementation, add some logic to track states 
 - probably the smallest FSM on the block in javascript-land
 - simple but powerful API
 - no external dependencies
-- synchronous state transitions only (async transitions are actually waiting states...)
+- synchronous state transitions only (async transitions are actually waiting states... but have a look at [`henderson`](https://github.com/orbitbot/pastafarian) for an almost identical approach with promises)
+- well below 100 LOC, small enough to read and understand immediately
 
 <br>
 
@@ -249,6 +250,8 @@ The existance of `fsm.error` has a significant impact on functionality:
 
 - name: `IllegalTransitionException`
 - message: `Transition from <current> to <next> is not allowed`
+- prev : `<current>`
+- attempt : `<next>`
 
 The exception is generated inside the library, but in modern environments it should contain a stacktrace that allows you to track which line caused the exception.
 
@@ -371,6 +374,4 @@ Bugfixes and improvements are welcome, however, please open an Issue to discuss 
 
 ##### Possible future
 
-- promise support for transition function?
-- chaining transition callbacks into single promise?
-- a transition that throws an error can be canceled?
+- a transition that throws an error can be canceled, ie. intelligent rollback?

@@ -2,6 +2,8 @@
   function ITE(prev, next) {
     var error = Error.call(this, 'Transition from ' + prev + ' to ' + next + ' is not allowed');
     error.name = 'IllegalTransitionException';
+    error.prev = prev;
+    error.attempt = next;
     return error;
   }
 
