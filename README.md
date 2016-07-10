@@ -41,13 +41,13 @@ state
   .on('after:start', function(next) {
     console.log('Going to ' + next);
   })
-  .on('end', function(param) {
+  .on('end', function(prev, param) {
     console.log('Now at end, 2 + 2 = ' + param);
   });
 
 state.go('end', 2 + 2);
 
-state.reset = state.go.bind('end');
+state.reset = state.go.bind(state, 'start');
 state.reset('foo');
 ```
 
