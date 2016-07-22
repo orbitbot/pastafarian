@@ -109,15 +109,15 @@ A state machine `var fsm = new StateMachine(config)` will have
 
 ###### Methods:
 
-**`fsm.bind(eventName, callback) ⇒ fsm`**
+**`fsm.bind(eventName, callback or [callbacks]) ⇒ fsm`**
 
-Attaches `callback` to be called whenever `eventName` is triggered by a state transition. See the [Event callback API](README.md#event-callback-api) for all possible events for a single transition.
+Attaches a single `callback` or an array of `[callbacks]` to be called whenever `eventName` is triggered by a state transition. See the [Event callback API](README.md#event-callback-api) for all possible events for a single transition.
 
 **`fsm.unbind(eventName, callback) ⇒ fsm`**
 
 De-registers `callback` so it will not be triggered for `eventName`. Previously registered callbacks must be named values for this to have an effect, if a callback was defined as an anonymous function this method will silently fail.
 
-**`fsm.on(eventName, callback) ⇒ fsm`**
+**`fsm.on(eventName, callback or [callbacks]) ⇒ fsm`**
 
 Synonym for `fsm.bind`.
 

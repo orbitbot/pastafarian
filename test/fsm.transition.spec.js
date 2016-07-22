@@ -22,7 +22,7 @@ describe('FSM transitions', function() {
     });
   });
 
-  it('updates the current state on transitions', function() {
+  it('updates the current state on transitions, even if no callbacks are registered', function() {
     fsm.current.should.equal('green');
     fsm.go('red');
     fsm.current.should.equal('red');

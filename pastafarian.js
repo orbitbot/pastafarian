@@ -16,7 +16,7 @@
     };
     fsm.bind = function(evt, fn) {
       events[evt] = events[evt] || [];
-      events[evt].push(fn);
+      events[evt] = events[evt].concat(fn);
       return fsm;
     };
     fsm.unbind = function(evt, fn) {

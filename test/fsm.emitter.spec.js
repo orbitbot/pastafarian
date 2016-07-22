@@ -3,6 +3,7 @@ if (typeof window === 'undefined')
 var chai = require('chai');
 var sinon = require('sinon');
 var should = chai.should();
+var expect = chai.expect;
 
 describe('FSM event emitter', function() {
 
@@ -104,5 +105,18 @@ describe('FSM event emitter', function() {
     fsm.on('red', cb(1));
     fsm.on('red', cb(2));
     fsm.go('red');
+  });
+
+  it('supports registering multiple callbacks at once', function() {
+    var fst = sinon.spy();
+    var snd = sinon.spy();
+    var trd = sinon.spy();
+
+    fsm.on('red', [
+      fst, snd, trd
+    ]);
+
+    fsm.go('red')
+    expect(fst.called && snd.called && trd.called).to.equal(true);
   });
 });
