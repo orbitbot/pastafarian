@@ -3,7 +3,6 @@
 
 [![Build Status](https://travis-ci.org/orbitbot/pastafarian.svg?branch=master)](https://travis-ci.org/orbitbot/pastafarian)
 ![Uncompressed size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.js?color=red)
-![minfied size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.min.js?color=yellow&label=minfied size)
 ![minfied+gzipped size](https://badge-size.herokuapp.com/orbitbot/pastafarian/master/pastafarian.min.js?label=gzipped.min&compression=gzip)
 
 Grab a lightweight event emitter implementation, add some logic to track states and Voilà! A tiny finite state machine implementation at little less than 550 bytes minfied and gzipped. `pastafarian` is implemented as a UMD module, so it should run in most javascript setups.
