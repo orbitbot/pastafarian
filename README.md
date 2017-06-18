@@ -13,7 +13,7 @@ Grab a lightweight event emitter implementation, add some logic to track states 
 - probably the smallest FSM on the block in javascript-land
 - simple but powerful API
 - no external dependencies
-- synchronous state transitions only (async transitions are actually waiting states... but have a look at [`henderson`](https://github.com/orbitbot/pastafarian) for an almost identical approach with promises)
+- synchronous state transitions only (async transitions are actually waiting states... but have a look at [`henderson`](https://github.com/orbitbot/henderson) for an almost identical approach with promises)
 - well below 100 LOC, small enough to read and understand immediately
 
 <br>
